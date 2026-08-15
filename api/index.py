@@ -224,7 +224,7 @@ Your response must:
 
 7. Never pretend a demo role is a real Volo vacancy.
 
-Keep the response under 180 words.
+Keep the response under 250 words.
 
 Use plain English.
 
