@@ -122,7 +122,7 @@ def match(req: MatchRequest):
             contents=text,
             config={
                 "system_instruction": SYSTEM_PROMPT,
-                "max_output_tokens": 400,
+                "max_output_tokens": 800,
             },
         )
 
