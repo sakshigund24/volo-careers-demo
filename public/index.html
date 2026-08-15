@@ -530,107 +530,74 @@
 
   <section class="block wrap" id="match">
 
-    <div class="section-head">
+  <div class="section-head">
+    <h2>Not seeing your fit yet?</h2>
+    <span class="tag">Compatibility scan</span>
+  </div>
 
-      <h2>
-        Not seeing your fit yet?
-      </h2>
+  <div class="match-panel">
 
-      <span class="tag">
-        Compatibility scan
-      </span>
+    <!-- Header -->
+    <div class="match-head">
+
+      <h3>Tell us what you do</h3>
+
+      <p>
+        Describe your background and skills. The AI reads your experience
+        against the roles above and tells you honestly which role is the
+        closest match.
+      </p>
 
     </div>
 
 
-    <div class="match-panel">
+    <!-- Chat -->
+    <div class="match-body">
 
-      <div class="match-head">
+      <div class="match-log" id="matchLog">
 
-        <h3>
-          Tell us what you do
-        </h3>
+        <!-- Initial message -->
+        <div class="msg bot initial-msg">
 
-        <p>
-          Describe your background and skills. The AI reads your
-          experience against the roles above and tells you honestly
-          which role is the closest match.
-        </p>
+          <span class="label">Scan</span>
+
+          <div class="msg-text">
+            Give me a quick rundown of your skills, experience,
+            or the kind of role you're after — I'll tell you how
+            it maps to Volo Health Care.
+          </div>
+
+        </div>
 
       </div>
 
 
-      <div class="match-body">
+      <!-- Input -->
+      <div class="input-row">
 
-        <div class="match-log" id="matchLog">
+        <textarea
+          id="skillsInput"
+          rows="2"
+          placeholder="e.g. I have 2 years of Python, FastAPI, LangChain and Generative AI experience..."
+        ></textarea>
 
-          <div class="msg bot initial-msg">
-
-              <span class="label">Scan</span>
-
-              <div class="msg-text">
-                Give me a quick rundown of your skills, experience,
-                or the kind of role you're after — I'll tell you how
-                it maps to Volo Health Care.
-              </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="input-row">
-
-          <textarea
-            id="skillsInput"
-            placeholder="e.g. I have 2 years of Python, FastAPI, LangChain and Generative AI experience..."
-          ></textarea>
-
-          <button
-            class="btn"
-            id="sendBtn"
-            type="button"
-          >
-            Scan
-          </button>
-
-        </div>
-
-
-        <p class="hint">
-          Live Gemini model call through a FastAPI backend.
-        </p>
+        <button
+          class="btn"
+          id="sendBtn"
+          type="button"
+        >
+          Scan
+        </button>
 
       </div>
 
-    </div>
 
-  </section>
-
-
-  <!-- ================= FOOTER ================= -->
-
-  <footer>
-
-    <div class="wrap">
-
-      <span>
-        Volo Health Care Inc. — Markham, Canada
-      </span>
-
-      <span>
-        Concept page built to demonstrate a careers UI rebuild
-        and AI-powered skills matching.
-      </span>
+      <p class="hint">
+        Live AI compatibility scan based on the roles displayed above.
+      </p>
 
     </div>
 
-  </footer>
+  </div>
 
-
-  <!-- JAVASCRIPT -->
-
-  <script src="script.js"></script>
-
-</body>
-</html>
+</section>

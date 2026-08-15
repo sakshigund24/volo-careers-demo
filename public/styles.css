@@ -1,3 +1,7 @@
+/* =========================================================
+   VOLO HEALTH CARE — CAREERS PAGE
+========================================================= */
+
 :root {
   --pine: #152b23;
   --pine-deep: #0d1a15;
@@ -12,9 +16,9 @@
 }
 
 
-/* =========================
+/* =========================================================
    RESET
-========================= */
+========================================================= */
 
 * {
   box-sizing: border-box;
@@ -22,11 +26,9 @@
   padding: 0;
 }
 
-
 html {
   scroll-behavior: smooth;
 }
-
 
 body {
   background: var(--bone);
@@ -35,14 +37,12 @@ body {
   line-height: 1.6;
 }
 
-
 h1,
 h2,
 h3,
 h4 {
   font-family: var(--font);
 }
-
 
 h1,
 h2,
@@ -51,11 +51,19 @@ h3 {
   letter-spacing: -0.01em;
 }
 
-
 a {
   color: inherit;
 }
 
+button,
+textarea {
+  font-family: var(--font);
+}
+
+
+/* =========================================================
+   COMMON
+========================================================= */
 
 .wrap {
   max-width: 1080px;
@@ -65,9 +73,9 @@ a {
 }
 
 
-/* =========================
+/* =========================================================
    CONCEPT BADGE
-========================= */
+========================================================= */
 
 .concept-badge {
   position: fixed;
@@ -91,9 +99,9 @@ a {
 }
 
 
-/* =========================
+/* =========================================================
    HEADER
-========================= */
+========================================================= */
 
 header {
   border-bottom: 1px solid var(--line);
@@ -106,22 +114,21 @@ header {
   z-index: 10;
 }
 
-
 .header-inner {
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
 
   padding-top: 22px;
   padding-bottom: 22px;
 }
 
-
 .wordmark {
   font-size: 20px;
   font-weight: 700;
 }
-
 
 nav ul {
   list-style: none;
@@ -133,7 +140,6 @@ nav ul {
   font-size: 14px;
 }
 
-
 nav a {
   text-decoration: none;
 
@@ -142,11 +148,9 @@ nav a {
   transition: opacity 0.15s ease;
 }
 
-
 nav a:hover {
   opacity: 1;
 }
-
 
 nav .current {
   opacity: 1;
@@ -157,15 +161,14 @@ nav .current {
 }
 
 
-/* =========================
+/* =========================================================
    HERO
-========================= */
+========================================================= */
 
 .hero {
   padding-top: 88px;
   padding-bottom: 64px;
 }
-
 
 .eyebrow {
   display: block;
@@ -183,7 +186,6 @@ nav .current {
   font-weight: 700;
 }
 
-
 .hero h1 {
   font-size: 48px;
 
@@ -193,7 +195,6 @@ nav .current {
 
   max-width: 16ch;
 }
-
 
 .hero p {
   font-size: 17px;
@@ -206,9 +207,9 @@ nav .current {
 }
 
 
-/* =========================
+/* =========================================================
    BUTTON
-========================= */
+========================================================= */
 
 .btn {
   display: inline-block;
@@ -237,29 +238,23 @@ nav .current {
 
   transition:
     background 0.15s ease,
-    transform 0.15s ease;
+    opacity 0.15s ease;
 }
-
 
 .btn:hover {
   background: var(--pine-deep);
-
-  transform: translateY(-1px);
 }
-
 
 .btn:disabled {
   opacity: 0.5;
 
-  cursor: default;
-
-  transform: none;
+  cursor: not-allowed;
 }
 
 
-/* =========================
+/* =========================================================
    QUOTE
-========================= */
+========================================================= */
 
 .quote-strip {
   background: var(--pine);
@@ -271,13 +266,11 @@ nav .current {
   text-align: center;
 }
 
-
 .quote-strip p {
   font-style: italic;
 
   font-size: 16px;
 }
-
 
 .quote-strip span {
   display: block;
@@ -290,17 +283,17 @@ nav .current {
 }
 
 
-/* =========================
+/* =========================================================
    SECTIONS
-========================= */
+========================================================= */
 
 section.block {
   padding-top: 72px;
+
   padding-bottom: 72px;
 
   border-bottom: 1px solid var(--line);
 }
-
 
 .section-head {
   display: flex;
@@ -316,11 +309,9 @@ section.block {
   flex-wrap: wrap;
 }
 
-
 .section-head h2 {
   font-size: 28px;
 }
-
 
 .section-head .tag {
   font-size: 12px;
@@ -335,9 +326,9 @@ section.block {
 }
 
 
-/* =========================
+/* =========================================================
    ROLE CARDS
-========================= */
+========================================================= */
 
 .role-card {
   border: 1px solid var(--line);
@@ -348,20 +339,12 @@ section.block {
 
   overflow: hidden;
 
-  margin-bottom: 24px;
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  margin-bottom: 22px;
 }
 
-
-.role-card:hover {
-  transform: translateY(-2px);
-
-  box-shadow: 0 10px 30px rgba(21, 43, 35, 0.08);
+.role-card:last-child {
+  margin-bottom: 0;
 }
-
 
 .role-head {
   background: var(--pine);
@@ -381,22 +364,17 @@ section.block {
   gap: 10px;
 }
 
-
 .role-head h3 {
   font-size: 21px;
 
   color: var(--bone);
-
-  margin-bottom: 3px;
 }
-
 
 .role-head .meta {
   font-size: 12px;
 
   color: var(--amber);
 }
-
 
 .role-body {
   padding: 28px;
@@ -407,7 +385,6 @@ section.block {
 
   gap: 32px;
 }
-
 
 .role-body h4 {
   font-size: 12px;
@@ -423,7 +400,6 @@ section.block {
   font-weight: 700;
 }
 
-
 .role-body ul {
   padding-left: 18px;
 
@@ -432,11 +408,13 @@ section.block {
   opacity: 0.88;
 }
 
-
 .role-body li {
   margin-bottom: 7px;
 }
 
+.role-body li:last-child {
+  margin-bottom: 0;
+}
 
 .role-foot {
   padding: 18px 28px;
@@ -449,23 +427,9 @@ section.block {
 }
 
 
-.real-role {
-  background: rgba(193, 137, 47, 0.08);
-
-  opacity: 1;
-}
-
-
-.demo-role {
-  background: rgba(124, 143, 131, 0.08);
-
-  opacity: 0.75;
-}
-
-
-/* =========================
-   AI MATCH PANEL
-========================= */
+/* =========================================================
+   AI COMPATIBILITY SCAN
+========================================================= */
 
 .match-panel {
   border: 1px solid var(--line);
@@ -478,6 +442,10 @@ section.block {
 }
 
 
+/* ---------------------------------------------------------
+   AI HEADER
+--------------------------------------------------------- */
+
 .match-head {
   padding: 26px 28px;
 
@@ -486,13 +454,11 @@ section.block {
   background: var(--bone-dim);
 }
 
-
 .match-head h3 {
   font-size: 19px;
 
   margin-bottom: 6px;
 }
-
 
 .match-head p {
   font-size: 14px;
@@ -503,14 +469,22 @@ section.block {
 }
 
 
+/* ---------------------------------------------------------
+   CHAT BODY
+--------------------------------------------------------- */
+
 .match-body {
   padding: 28px;
 }
 
 
-/* =========================
-   CHAT
-========================= */
+/* ---------------------------------------------------------
+   CHAT LOG
+
+   IMPORTANT:
+   No fixed height on individual messages.
+   The log itself controls scrolling.
+--------------------------------------------------------- */
 
 .match-log {
   display: flex;
@@ -519,99 +493,177 @@ section.block {
 
   gap: 14px;
 
-  margin-bottom: 18px;
+  width: 100%;
+
+  margin: 0 0 18px 0;
 
   max-height: 360px;
 
   overflow-y: auto;
 
-  padding-right: 4px;
+  padding: 0 5px 5px 0;
 }
 
 
+/* ---------------------------------------------------------
+   CHAT MESSAGE
+--------------------------------------------------------- */
+
 .msg {
+  display: block;
+
+  width: fit-content;
+
+  max-width: 78%;
+
+  min-width: 0;
+
+  height: auto;
+
+  min-height: 0;
+
+  margin: 0;
+
+  padding: 14px 16px;
+
+  border-radius: 4px;
+
   font-size: 14.5px;
-
-  padding: 13px 16px;
-
-  border-radius: 3px;
-
-  max-width: 80%;
 
   line-height: 1.55;
 
-  white-space: pre-wrap;
+  white-space: normal;
+
+  overflow-wrap: anywhere;
+
+  word-break: normal;
 }
 
+
+/* ---------------------------------------------------------
+   BOT MESSAGE
+--------------------------------------------------------- */
 
 .msg.bot {
+  align-self: flex-start;
+
   background: var(--bone-dim);
 
-  align-self: flex-start;
+  color: var(--ink);
 }
 
 
+/* ---------------------------------------------------------
+   USER MESSAGE
+--------------------------------------------------------- */
+
 .msg.user {
+  align-self: flex-end;
+
   background: var(--pine);
 
   color: var(--bone);
-
-  align-self: flex-end;
 }
 
+
+/* ---------------------------------------------------------
+   MESSAGE LABEL
+--------------------------------------------------------- */
 
 .msg .label {
   display: block;
 
+  margin: 0 0 8px 0;
+
+  padding: 0;
+
   font-size: 10px;
 
-  letter-spacing: 0.06em;
+  line-height: 1.2;
+
+  letter-spacing: 0.08em;
 
   text-transform: uppercase;
 
-  opacity: 0.55;
-
-  margin-bottom: 5px;
-
   font-weight: 700;
+
+  opacity: 0.55;
 }
 
 
-/* =========================
-   INPUT
-========================= */
+/* ---------------------------------------------------------
+   MESSAGE TEXT
+--------------------------------------------------------- */
+
+.msg-text {
+  display: block;
+
+  margin: 0;
+
+  padding: 0;
+
+  line-height: 1.55;
+}
+
+
+/* ---------------------------------------------------------
+   FIRST MESSAGE
+--------------------------------------------------------- */
+
+.initial-msg {
+  width: fit-content;
+
+  max-width: 78%;
+
+  height: auto;
+
+  min-height: 0;
+
+  padding: 14px 16px;
+}
+
+
+/* =========================================================
+   CHAT INPUT
+========================================================= */
 
 .input-row {
   display: flex;
 
+  align-items: stretch;
+
   gap: 10px;
 
-  align-items: stretch;
+  width: 100%;
 }
-
 
 textarea#skillsInput {
   flex: 1;
 
-  resize: none;
+  width: 100%;
+
+  min-height: 54px;
+
+  max-height: 160px;
+
+  resize: vertical;
 
   border: 1px solid var(--line);
 
   border-radius: 2px;
 
-  padding: 12px 14px;
+  padding: 13px 14px;
 
   font-family: var(--font);
 
   font-size: 14px;
 
-  min-height: 52px;
+  line-height: 1.5;
 
   color: var(--ink);
 
   background: #ffffff;
 }
-
 
 textarea#skillsInput:focus {
   outline: 2px solid var(--amber);
@@ -619,16 +671,20 @@ textarea#skillsInput:focus {
   outline-offset: 1px;
 }
 
-
 textarea#skillsInput::placeholder {
   color: #777;
 }
 
-
 .input-row .btn {
   min-width: 100px;
+
+  align-self: stretch;
 }
 
+
+/* =========================================================
+   HINT
+========================================================= */
 
 .hint {
   font-size: 12.5px;
@@ -639,16 +695,38 @@ textarea#skillsInput::placeholder {
 }
 
 
-/* =========================
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.match-log::-webkit-scrollbar {
+  width: 7px;
+}
+
+.match-log::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.match-log::-webkit-scrollbar-thumb {
+  background: rgba(21, 43, 35, 0.35);
+
+  border-radius: 10px;
+}
+
+.match-log::-webkit-scrollbar-thumb:hover {
+  background: rgba(21, 43, 35, 0.55);
+}
+
+
+/* =========================================================
    FOOTER
-========================= */
+========================================================= */
 
 footer {
   padding-top: 40px;
 
   padding-bottom: 60px;
 }
-
 
 footer .wrap {
   display: flex;
@@ -665,26 +743,43 @@ footer .wrap {
 }
 
 
-/* =========================
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .wrap {
+    padding-left: 24px;
+
+    padding-right: 24px;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  .role-body {
+    gap: 24px;
+  }
+
+}
+
+
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
 @media (max-width: 780px) {
 
   .wrap {
     padding-left: 20px;
+
     padding-right: 20px;
   }
 
 
-  .concept-badge {
-    right: 8px;
-
-    font-size: 7px;
-
-    padding: 6px 8px;
-  }
-
+  /* Header */
 
   .header-inner {
     flex-direction: column;
@@ -692,8 +787,11 @@ footer .wrap {
     align-items: flex-start;
 
     gap: 18px;
-  }
 
+    padding-top: 18px;
+
+    padding-bottom: 18px;
+  }
 
   nav ul {
     gap: 18px;
@@ -704,12 +802,13 @@ footer .wrap {
   }
 
 
+  /* Hero */
+
   .hero {
     padding-top: 56px;
 
     padding-bottom: 50px;
   }
-
 
   .hero h1 {
     font-size: 34px;
@@ -717,11 +816,12 @@ footer .wrap {
     max-width: none;
   }
 
-
   .hero p {
     font-size: 15px;
   }
 
+
+  /* Sections */
 
   section.block {
     padding-top: 55px;
@@ -729,21 +829,24 @@ footer .wrap {
     padding-bottom: 55px;
   }
 
+  .section-head {
+    margin-bottom: 26px;
+  }
 
   .section-head h2 {
     font-size: 25px;
   }
 
 
+  /* Role cards */
+
   .role-head {
     padding: 20px;
   }
 
-
   .role-head h3 {
     font-size: 19px;
   }
-
 
   .role-body {
     grid-template-columns: 1fr;
@@ -753,132 +856,118 @@ footer .wrap {
     gap: 24px;
   }
 
-
   .role-foot {
     padding: 16px 20px;
   }
 
 
-  .match-head,
+  /* AI panel */
+
+  .match-head {
+    padding: 20px;
+  }
+
   .match-body {
     padding: 20px;
   }
 
 
-  .input-row {
-    flex-direction: column;
+  /* Chat */
+
+  .match-log {
+    max-height: 400px;
+
+    gap: 12px;
+  }
+
+  .msg {
+    max-width: 90%;
+
+    font-size: 14px;
+
+    padding: 13px 14px;
+  }
+
+  .initial-msg {
+    max-width: 90%;
   }
 
 
-  .input-row .btn {
+  /* Input */
+
+  .input-row {
+    flex-direction: column;
+
+    gap: 10px;
+  }
+
+  textarea#skillsInput {
+    min-height: 80px;
+
     width: 100%;
   }
 
+  .input-row .btn {
+    width: 100%;
 
-  /* =========================
-   CHAT MESSAGES
-========================= */
-
-.match-log {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-
-  margin-bottom: 18px;
-
-  max-height: 360px;
-  overflow-y: auto;
-
-  padding: 4px;
-}
+    min-height: 48px;
+  }
 
 
-/* Every message */
-
-.msg {
-  display: block;
-
-  font-size: 14.5px;
-  line-height: 1.55;
-
-  padding: 14px 16px;
-
-  border-radius: 4px;
-
-  max-width: 80%;
-
-  white-space: normal;
-
-  overflow-wrap: break-word;
-}
-
-
-/* AI message */
-
-.msg.bot {
-  background: var(--bone-dim);
-
-  align-self: flex-start;
-
-  color: var(--ink);
-}
-
-
-/* User message */
-
-.msg.user {
-  background: var(--pine);
-
-  color: var(--bone);
-
-  align-self: flex-end;
-}
-
-
-/* Message label */
-
-.msg .label {
-  display: block;
-
-  font-size: 10px;
-
-  line-height: 1.2;
-
-  letter-spacing: 0.08em;
-
-  text-transform: uppercase;
-
-  opacity: 0.55;
-
-  margin-bottom: 8px;
-
-  font-weight: 700;
-}
-
-
-/* Message text */
-
-.msg-text {
-  display: block;
-
-  line-height: 1.55;
-}
-
-
-/* Initial Scan message */
-
-.initial-msg {
-  width: fit-content;
-
-  max-width: 80%;
-
-  min-height: auto;
-
-  height: auto;
-}
+  /* Footer */
 
   footer .wrap {
     flex-direction: column;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .concept-badge {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .role-head .meta {
+    width: 100%;
+  }
+
+  .role-body {
+    padding: 18px;
+  }
+
+  .role-foot {
+    font-size: 12.5px;
+  }
+
+  .match-head h3 {
+    font-size: 18px;
+  }
+
+  .match-head p {
+    font-size: 13.5px;
+  }
+
+  .match-body {
+    padding: 16px;
+  }
+
+  .msg,
+  .initial-msg {
+    max-width: 94%;
   }
 
 }

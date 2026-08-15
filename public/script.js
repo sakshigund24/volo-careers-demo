@@ -17,7 +17,7 @@ async function runMatch() {
 
 
   // ----------------------------------------------------------
-  // Add user's message
+  // USER MESSAGE
   // ----------------------------------------------------------
 
   const userMsg = document.createElement("div");
@@ -26,7 +26,9 @@ async function runMatch() {
 
   userMsg.innerHTML =
     '<span class="label">You</span>' +
-    escapeHtml(text);
+    '<div class="msg-text">' +
+    escapeHtml(text) +
+    "</div>";
 
   log.appendChild(userMsg);
 
@@ -36,7 +38,7 @@ async function runMatch() {
 
 
   // ----------------------------------------------------------
-  // Loading message
+  // LOADING MESSAGE
   // ----------------------------------------------------------
 
   const loading = document.createElement("div");
@@ -44,8 +46,10 @@ async function runMatch() {
   loading.className = "msg bot";
 
   loading.innerHTML =
-  '<span class="label">Scan</span>' +
-  '<div class="msg-text">Reading your profile against the current roles…</div>';
+    '<span class="label">Scan</span>' +
+    '<div class="msg-text">' +
+    "Reading your profile against the current roles…" +
+    "</div>";
 
   log.appendChild(loading);
 
@@ -57,7 +61,7 @@ async function runMatch() {
   try {
 
     // --------------------------------------------------------
-    // Call FastAPI backend
+    // API REQUEST
     // --------------------------------------------------------
 
     const res = await fetch("/api/match", {
@@ -76,7 +80,7 @@ async function runMatch() {
 
 
     // --------------------------------------------------------
-    // Check HTTP status
+    // HTTP ERROR
     // --------------------------------------------------------
 
     if (!res.ok) {
@@ -84,6 +88,7 @@ async function runMatch() {
       let errorMessage = "";
 
       try {
+
         const errorData = await res.json();
 
         errorMessage =
@@ -92,9 +97,10 @@ async function runMatch() {
           "";
 
       } catch (e) {
-        errorMessage = "";
-      }
 
+        errorMessage = "";
+
+      }
 
       throw new Error(
         `API Error ${res.status} ${errorMessage}`
@@ -103,7 +109,7 @@ async function runMatch() {
 
 
     // --------------------------------------------------------
-    // Read JSON response
+    // READ RESPONSE
     // --------------------------------------------------------
 
     const data = await res.json();
@@ -114,22 +120,34 @@ async function runMatch() {
 
 
     // --------------------------------------------------------
-    // Display Gemini response
+    // DISPLAY ACTUAL AI RESPONSE
     // --------------------------------------------------------
 
     loading.innerHTML =
-    '<span class="label">Scan</span>' +
-    "Reading against current roles…";
+      '<span class="label">Scan</span>' +
+      '<div class="msg-text">' +
+      escapeHtml(reply).replace(/\n/g, "<br>") +
+      "</div>";
 
 
   } catch (err) {
 
-    console.error("Compatibility Scan Error:", err);
+    console.error(
+      "Compatibility Scan Error:",
+      err
+    );
+
+
+    // --------------------------------------------------------
+    // ERROR MESSAGE
+    // --------------------------------------------------------
 
     loading.innerHTML =
       '<span class="label">Scan</span>' +
+      '<div class="msg-text">' +
       "Something went wrong reaching the server. " +
-      "Please try again in a moment.";
+      "Please try again in a moment." +
+      "</div>";
 
   } finally {
 
@@ -143,7 +161,6 @@ async function runMatch() {
 
 // ============================================================
 // ESCAPE HTML
-// Prevents user input / AI output from injecting HTML
 // ============================================================
 
 function escapeHtml(str) {
@@ -162,23 +179,30 @@ function escapeHtml(str) {
 // BUTTON
 // ============================================================
 
-btn.addEventListener("click", runMatch);
+btn.addEventListener(
+  "click",
+  runMatch
+);
 
 
 // ============================================================
 // ENTER KEY
-// Enter = send
-// Shift + Enter = new line
 // ============================================================
 
-input.addEventListener("keydown", function (e) {
+input.addEventListener(
+  "keydown",
+  function (e) {
 
-  if (e.key === "Enter" && !e.shiftKey) {
+    if (
+      e.key === "Enter" &&
+      !e.shiftKey
+    ) {
 
-    e.preventDefault();
+      e.preventDefault();
 
-    runMatch();
+      runMatch();
+
+    }
 
   }
-
-});
+);
