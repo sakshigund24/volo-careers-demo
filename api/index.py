@@ -59,12 +59,12 @@ class MatchRequest(BaseModel):
     message: str
 
 
-@app.get("/health")
+@app.get("/api/health")
 def health():
     return {"status": "ok"}
 
 
-@app.post("/match")
+@app.post("/api/match")
 def match(req: MatchRequest):
     text = (req.message or "").strip()
     if not text:
