@@ -84,9 +84,17 @@ def match(req: MatchRequest):
             system=SYSTEM_PROMPT,
             messages=[{"role": "user", "content": text}],
         )
+
         reply = "".join(
-            block.text for block in response.content if hasattr(block, "text")
+            block.text
+            for block in response.content
+            if hasattr(block, "text")
         ).strip()
+
         return {"reply": reply or "Couldn't generate a response - try again."}
-    except Exception:
-        return {"reply": "Something went wrong reaching the model. Try again shortly."}
+
+    except Exception as e:
+        print("ANTHROPIC ERROR:", repr(e))
+        return {
+            "reply": f"Anthropic API error: {str(e)}"
+        }
