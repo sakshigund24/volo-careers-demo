@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from google import genai
+from google.genai import types
 
 
 app = FastAPI()
@@ -42,10 +43,8 @@ COMPANY_CONTEXT = """
 Volo Health Care Inc. is a Canadian natural health products /
 nutraceutical company based in Markham, Ontario.
 
-The careers page currently contains one REAL company opening:
-
-REAL OPENING
---------------------------------------------------
+CURRENT REAL OPENING
+====================
 
 1. Independent Sales Representative
 
@@ -66,11 +65,12 @@ Requirements:
 - Nutraceutical or pharmaceutical background is a plus
 
 
-DEMO / TEST OPENINGS
---------------------------------------------------
+DEMO / TEST ROLES
+=================
 
-The following four roles are ONLY for testing the AI
-compatibility feature. They should NOT be presented as
+IMPORTANT:
+The following four roles are DEMO roles created ONLY to test
+the AI Compatibility Scan. They must NOT be described as
 confirmed real Volo job openings.
 
 2. Python Developer
@@ -149,15 +149,6 @@ Requirements:
 - Content creation
 - Campaign management
 - Basic analytics
-
-
-IMPORTANT:
-
-Only "Independent Sales Representative" is a real currently
-posted Volo opening.
-
-The other four roles exist only to test the compatibility
-matching system.
 """
 
 
@@ -165,48 +156,79 @@ matching system.
 # SYSTEM PROMPT
 # ============================================================
 
-SYSTEM_PROMPT = f"""
+SYSTEM_PROMPT = """
 You are an AI Compatibility Scanner for a careers demo page.
 
-Analyze the candidate's background against ALL of these roles:
+Your job is to compare a candidate's actual skills and experience
+against the five roles provided in the company context.
 
-1. Independent Sales Representative
-2. Python Developer
-3. AI/ML Engineer
-4. Frontend Developer
-5. Marketing Associate
+IMPORTANT RULES:
 
-Candidate profile:
-{message}
+1. Analyze ALL five roles before choosing the closest match.
 
-Return a COMPLETE response using exactly this structure:
+2. The "Closest match" must be EXACTLY one of these role names:
+
+   Independent Sales Representative
+   Python Developer
+   AI/ML Engineer
+   Frontend Developer
+   Marketing Associate
+
+3. Do NOT invent skills, education, experience, years of experience,
+   certifications, or achievements that the candidate did not mention.
+
+4. Base the answer only on the candidate's provided information.
+
+5. Independent Sales Representative is the ONLY real currently
+   posted Volo opening.
+
+6. Python Developer, AI/ML Engineer, Frontend Developer and
+   Marketing Associate are DEMO / TEST roles only.
+
+7. If the closest match is a demo role, clearly say that it is
+   a demo role and NOT a confirmed Volo opening.
+
+8. If the candidate is not a strong match for the real sales role,
+   do not force them into it. Choose the role that actually matches
+   their skills best.
+
+9. Write complete sentences.
+
+10. Never stop in the middle of a sentence.
+
+11. Do not end the response with incomplete phrases such as:
+    "and", "or", "your", "their", "the", "with", "which", etc.
+
+12. Keep the response concise but complete.
+
+13. Target approximately 150-220 words.
+
+14. Do not include unnecessary disclaimers.
+
+Use this exact structure:
 
 Closest match: [EXACT ROLE NAME]
 
 Why this is the closest match:
-[2-4 complete sentences explaining why the candidate matches this role.
-Mention specific skills or experience from the candidate.]
+[2-4 complete sentences explaining why this role matches the
+candidate. Mention specific candidate skills.]
 
 Skills that match:
-- [skill/experience]
-- [skill/experience]
-- [skill/experience]
+- [specific matching skill]
+- [specific matching skill]
+- [specific matching skill]
 
 Other possible matches:
-- [ROLE NAME] — [short reason]
-- [ROLE NAME] — [short reason]
+- [ROLE NAME] — [short explanation]
+- [ROLE NAME] — [short explanation]
 
 Recommendation:
-[1-2 complete sentences explaining what the candidate should focus on.]
+[1-2 complete sentences explaining what the candidate should
+highlight or improve.]
 
-Important:
-- Always write complete sentences.
-- Never stop in the middle of a sentence.
-- Do not end with "and", "or", "your", "their", "the", etc.
-- Do not invent experience that the candidate did not mention.
-- The roles other than Independent Sales Representative are DEMO roles for testing this compatibility feature.
-- Clearly mention that the scan is a demo when appropriate.
-- Keep the response around 150-220 words.
+Demo status:
+[Clearly state whether the recommended role is a demo/test role
+or the real currently posted opening.]
 """
 
 
@@ -224,6 +246,7 @@ class MatchRequest(BaseModel):
 
 @app.get("/api/health")
 def health():
+
     return {
         "status": "ok"
     }
@@ -238,65 +261,126 @@ def match(req: MatchRequest):
 
     text = (req.message or "").strip()
 
+
     # --------------------------------------------------------
-    # Empty input
+    # EMPTY INPUT
     # --------------------------------------------------------
 
     if not text:
+
         return {
             "reply": "Tell me a bit about your background first."
         }
 
+
     # --------------------------------------------------------
-    # API key check
+    # API KEY CHECK
     # --------------------------------------------------------
 
-    if not GEMINI_API_KEY:
+    if not GEMINI_API_KEY or client is None:
+
         return {
             "reply": (
-                "Server isn't configured with a Gemini API key yet. "
-                "Please set GEMINI_API_KEY in your Vercel Environment Variables."
+                "The Gemini API is not configured. "
+                "Please check the GEMINI_API_KEY environment variable."
             )
         }
 
+
     # --------------------------------------------------------
-    # Gemini request
+    # BUILD CANDIDATE PROMPT
+    # --------------------------------------------------------
+
+    candidate_prompt = f"""
+{COMPANY_CONTEXT}
+
+============================================================
+CANDIDATE PROFILE
+============================================================
+
+{text}
+
+============================================================
+TASK
+============================================================
+
+Analyze this candidate against ALL five roles.
+
+Choose the single closest role.
+
+Return the complete compatibility analysis using the
+required structure from the system instructions.
+
+Make sure the response is complete and does not end
+mid-sentence.
+"""
+
+
+    # --------------------------------------------------------
+    # GEMINI REQUEST
     # --------------------------------------------------------
 
     try:
 
         response = client.models.generate_content(
-            model="gemini-3.6-flash",
-            contents=text,
-            config={
-                "system_instruction": SYSTEM_PROMPT,
-                "max_output_tokens": 800,
-                "temperature": 0.3,
-            },
+
+            model="gemini-2.5-flash",
+
+            contents=candidate_prompt,
+
+            config=types.GenerateContentConfig(
+
+                system_instruction=SYSTEM_PROMPT,
+
+                max_output_tokens=800,
+
+                temperature=0.3,
+
+            ),
         )
+
+
+        # ----------------------------------------------------
+        # GET RESPONSE
+        # ----------------------------------------------------
 
         reply = (response.text or "").strip()
 
+
         if not reply:
+
             return {
-                "reply": "Couldn't generate a response. Please try again."
+                "reply": (
+                    "The AI did not return a response. "
+                    "Please try the scan again."
+                )
             }
+
+
+        # ----------------------------------------------------
+        # RETURN TO FRONTEND
+        # ----------------------------------------------------
 
         return {
             "reply": reply
         }
 
+
     # --------------------------------------------------------
-    # Error handling
+    # GEMINI ERROR
     # --------------------------------------------------------
 
     except Exception as e:
 
-        print("GEMINI ERROR:", repr(e))
+        print("========================================")
+        print("GEMINI ERROR")
+        print(repr(e))
+        print("========================================")
+
 
         return {
             "reply": (
-                "Something went wrong reaching the AI service. "
-                "Please try again shortly."
+                "Something went wrong while running the "
+                "compatibility scan. Please try again shortly."
             )
         }
