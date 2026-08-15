@@ -530,74 +530,91 @@
 
   <section class="block wrap" id="match">
 
-  <div class="section-head">
-    <h2>Not seeing your fit yet?</h2>
-    <span class="tag">Compatibility scan</span>
-  </div>
-
-  <div class="match-panel">
-
-    <!-- Header -->
-    <div class="match-head">
-
-      <h3>Tell us what you do</h3>
-
-      <p>
-        Describe your background and skills. The AI reads your experience
-        against the roles above and tells you honestly which role is the
-        closest match.
-      </p>
-
+    <div class="section-head">
+        <h2>Not seeing your fit yet?</h2>
+        <span class="tag">Compatibility scan</span>
     </div>
 
+    <div class="match-panel">
 
-    <!-- Chat -->
-    <div class="match-body">
+        <div class="match-head">
+            <h3>Tell us what you do</h3>
 
-      <div class="match-log" id="matchLog">
+            <p>
+                Describe your background and skills.
+                The AI reads your experience against the roles above
+                and tells you honestly which role is the closest match.
+            </p>
+        </div>
 
-        <!-- Initial message -->
-        <div class="msg bot initial-msg">
 
-          <span class="label">Scan</span>
+        <div class="match-body">
 
-          <div class="msg-text">
-            Give me a quick rundown of your skills, experience,
-            or the kind of role you're after — I'll tell you how
-            it maps to Volo Health Care.
-          </div>
+            <div class="match-log" id="matchLog">
+
+                <div class="msg bot initial-msg">
+
+                    <span class="label">Scan</span>
+
+                    <div class="msg-text">
+                        Give me a quick rundown of your skills, experience,
+                        or the kind of role you're after — I'll tell you how
+                        it maps to Volo Health Care.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="input-row">
+
+                <textarea
+                    id="skillsInput"
+                    placeholder="e.g. I have 2 years of Python, FastAPI, LangChain and Generative AI experience..."
+                ></textarea>
+
+                <button
+                    type="button"
+                    class="btn"
+                    id="sendBtn">
+                    Scan
+                </button>
+
+            </div>
+
+
+            <p class="hint">
+                Live AI compatibility scan based on the demo roles above.
+            </p>
 
         </div>
 
-      </div>
+    </div>
+
+</section>
 
 
-      <!-- Input -->
-      <div class="input-row">
+<footer>
 
-        <textarea
-          id="skillsInput"
-          rows="2"
-          placeholder="e.g. I have 2 years of Python, FastAPI, LangChain and Generative AI experience..."
-        ></textarea>
+    <div class="wrap">
 
-        <button
-          class="btn"
-          id="sendBtn"
-          type="button"
-        >
-          Scan
-        </button>
+        <span>
+            Volo Health Care Inc. — Markham, Canada
+        </span>
 
-      </div>
-
-
-      <p class="hint">
-        Live AI compatibility scan based on the roles displayed above.
-      </p>
+        <span>
+            Concept page built to demonstrate a careers-page redesign
+            and AI skills-match feature.
+        </span>
 
     </div>
 
-  </div>
+</footer>
 
-</section>
+
+<!-- JavaScript MUST be loaded here -->
+<script src="script.js"></script>
+
+</body>
+</html>
