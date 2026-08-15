@@ -1,7 +1,3 @@
-/* =========================================================
-   VOLO HEALTH CARE — CAREERS PAGE
-========================================================= */
-
 :root {
   --pine: #152b23;
   --pine-deep: #0d1a15;
@@ -37,35 +33,29 @@ body {
   line-height: 1.6;
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font);
+button,
+textarea {
+  font-family: inherit;
 }
 
 h1,
 h2,
-h3 {
-  font-weight: 700;
-  letter-spacing: -0.01em;
+h3,
+h4 {
+  margin: 0;
 }
 
 a {
   color: inherit;
 }
 
-button,
-textarea {
-  font-family: var(--font);
-}
-
 
 /* =========================================================
-   COMMON
+   LAYOUT
 ========================================================= */
 
 .wrap {
+  width: 100%;
   max-width: 1080px;
   margin: 0 auto;
   padding-left: 32px;
@@ -81,21 +71,18 @@ textarea {
   position: fixed;
   top: 3px;
   right: 16px;
-  z-index: 50;
+  z-index: 100;
 
   background: var(--pine);
   color: var(--bone);
 
-  font-size: 8px;
-  letter-spacing: 0.06em;
-
   padding: 7px 12px;
 
-  border-radius: 2px;
-
+  font-size: 8px;
+  letter-spacing: .06em;
   text-transform: uppercase;
 
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
 }
 
 
@@ -104,25 +91,23 @@ textarea {
 ========================================================= */
 
 header {
-  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 50;
 
   background: var(--bone);
 
-  position: sticky;
-  top: 0;
-
-  z-index: 10;
+  border-bottom: 1px solid var(--line);
 }
 
 .header-inner {
+  min-height: 70px;
+
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
-  padding-top: 22px;
-  padding-bottom: 22px;
+  gap: 30px;
 }
 
 .wordmark {
@@ -131,21 +116,19 @@ header {
 }
 
 nav ul {
+  display: flex;
+  align-items: center;
+
   list-style: none;
 
-  display: flex;
-
-  gap: 32px;
+  gap: 30px;
 
   font-size: 14px;
 }
 
 nav a {
   text-decoration: none;
-
-  opacity: 0.7;
-
-  transition: opacity 0.15s ease;
+  opacity: .7;
 }
 
 nav a:hover {
@@ -154,9 +137,7 @@ nav a:hover {
 
 nav .current {
   opacity: 1;
-
   border-bottom: 2px solid var(--amber);
-
   padding-bottom: 3px;
 }
 
@@ -173,37 +154,36 @@ nav .current {
 .eyebrow {
   display: block;
 
-  font-size: 12px;
-
-  letter-spacing: 0.1em;
+  margin-bottom: 18px;
 
   color: var(--amber);
 
-  text-transform: uppercase;
-
-  margin-bottom: 18px;
-
+  font-size: 12px;
   font-weight: 700;
+
+  letter-spacing: .1em;
+  text-transform: uppercase;
 }
 
 .hero h1 {
-  font-size: 48px;
-
-  line-height: 1.1;
+  max-width: 16ch;
 
   margin-bottom: 22px;
 
-  max-width: 16ch;
+  font-size: 48px;
+  line-height: 1.1;
+
+  letter-spacing: -.02em;
 }
 
 .hero p {
-  font-size: 17px;
-
   max-width: 52ch;
 
-  opacity: 0.82;
-
   margin-bottom: 30px;
+
+  font-size: 17px;
+
+  opacity: .82;
 }
 
 
@@ -212,33 +192,26 @@ nav .current {
 ========================================================= */
 
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
   background: var(--pine);
-
   color: var(--bone);
+
+  border: 0;
+  border-radius: 2px;
 
   padding: 13px 26px;
 
-  border-radius: 2px;
-
-  text-decoration: none;
-
   font-size: 14px;
-
   font-weight: 700;
-
-  letter-spacing: 0.01em;
-
-  border: none;
 
   cursor: pointer;
 
-  font-family: var(--font);
-
   transition:
-    background 0.15s ease,
-    opacity 0.15s ease;
+    background .15s ease,
+    opacity .15s ease;
 }
 
 .btn:hover {
@@ -246,8 +219,7 @@ nav .current {
 }
 
 .btn:disabled {
-  opacity: 0.5;
-
+  opacity: .55;
   cursor: not-allowed;
 }
 
@@ -257,19 +229,17 @@ nav .current {
 ========================================================= */
 
 .quote-strip {
-  background: var(--pine);
-
-  color: var(--bone-dim);
-
   padding: 26px 20px;
+
+  background: var(--pine);
+  color: var(--bone-dim);
 
   text-align: center;
 }
 
 .quote-strip p {
-  font-style: italic;
-
   font-size: 16px;
+  font-style: italic;
 }
 
 .quote-strip span {
@@ -278,8 +248,7 @@ nav .current {
   margin-top: 6px;
 
   font-size: 12px;
-
-  opacity: 0.6;
+  opacity: .6;
 }
 
 
@@ -289,7 +258,6 @@ nav .current {
 
 section.block {
   padding-top: 72px;
-
   padding-bottom: 72px;
 
   border-bottom: 1px solid var(--line);
@@ -297,16 +265,12 @@ section.block {
 
 .section-head {
   display: flex;
-
   align-items: baseline;
-
   justify-content: space-between;
 
+  gap: 20px;
+
   margin-bottom: 36px;
-
-  gap: 24px;
-
-  flex-wrap: wrap;
 }
 
 .section-head h2 {
@@ -314,15 +278,13 @@ section.block {
 }
 
 .section-head .tag {
-  font-size: 12px;
-
   color: var(--sage);
 
+  font-size: 12px;
   font-weight: 700;
 
+  letter-spacing: .05em;
   text-transform: uppercase;
-
-  letter-spacing: 0.05em;
 }
 
 
@@ -331,15 +293,16 @@ section.block {
 ========================================================= */
 
 .role-card {
-  border: 1px solid var(--line);
-
-  background: #ffffff;
-
-  border-radius: 3px;
-
-  overflow: hidden;
+  width: 100%;
 
   margin-bottom: 22px;
+
+  background: #fff;
+
+  border: 1px solid var(--line);
+  border-radius: 4px;
+
+  overflow: hidden;
 }
 
 .role-card:last-child {
@@ -347,182 +310,181 @@ section.block {
 }
 
 .role-head {
-  background: var(--pine);
-
-  color: var(--bone);
-
   padding: 22px 28px;
 
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-
-  flex-wrap: wrap;
-
-  gap: 10px;
+  background: var(--pine);
+  color: var(--bone);
 }
 
 .role-head h3 {
-  font-size: 21px;
-
   color: var(--bone);
+
+  font-size: 21px;
+  line-height: 1.3;
 }
 
-.role-head .meta {
-  font-size: 12px;
+.meta {
+  display: block;
+
+  margin-top: 5px;
 
   color: var(--amber);
+
+  font-size: 12px;
 }
 
 .role-body {
-  padding: 28px;
-
   display: grid;
-
   grid-template-columns: 1fr 1fr;
 
   gap: 32px;
+
+  padding: 28px;
 }
 
 .role-body h4 {
-  font-size: 12px;
-
-  letter-spacing: 0.05em;
-
-  text-transform: uppercase;
+  margin-bottom: 12px;
 
   color: var(--sage);
 
-  margin-bottom: 12px;
-
+  font-size: 12px;
   font-weight: 700;
+
+  letter-spacing: .05em;
+  text-transform: uppercase;
 }
 
 .role-body ul {
   padding-left: 18px;
 
   font-size: 14.5px;
-
-  opacity: 0.88;
 }
 
 .role-body li {
   margin-bottom: 7px;
 }
 
-.role-body li:last-child {
-  margin-bottom: 0;
-}
-
 .role-foot {
-  padding: 18px 28px;
+  padding: 17px 28px;
 
   border-top: 1px solid var(--line);
 
   font-size: 13.5px;
+}
 
-  opacity: 0.7;
+.real-role {
+  color: var(--ink);
+}
+
+.demo-role {
+  color: #666;
+  background: #fafafa;
 }
 
 
 /* =========================================================
-   AI COMPATIBILITY SCAN
+   AI MATCH PANEL
 ========================================================= */
 
 .match-panel {
+  width: 100%;
+
+  background: #fff;
+
   border: 1px solid var(--line);
-
-  background: #ffffff;
-
-  border-radius: 3px;
+  border-radius: 4px;
 
   overflow: hidden;
 }
 
-
-/* ---------------------------------------------------------
-   AI HEADER
---------------------------------------------------------- */
-
 .match-head {
   padding: 26px 28px;
 
-  border-bottom: 1px solid var(--line);
-
   background: var(--bone-dim);
+
+  border-bottom: 1px solid var(--line);
 }
 
 .match-head h3 {
-  font-size: 19px;
-
   margin-bottom: 6px;
+
+  font-size: 19px;
 }
 
 .match-head p {
+  max-width: 70ch;
+
   font-size: 14px;
 
-  opacity: 0.75;
-
-  max-width: 70ch;
+  opacity: .75;
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    CHAT BODY
---------------------------------------------------------- */
+========================================================= */
 
 .match-body {
   padding: 28px;
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    CHAT LOG
 
    IMPORTANT:
-   No fixed height on individual messages.
-   The log itself controls scrolling.
---------------------------------------------------------- */
+   Everything below prevents message overlap.
+========================================================= */
 
 .match-log {
-  display: flex;
+  width: 100%;
 
-  flex-direction: column;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
 
   gap: 14px;
 
-  width: 100%;
+  margin-bottom: 18px;
 
-  margin: 0 0 18px 0;
-
-  max-height: 360px;
+  max-height: 380px;
 
   overflow-y: auto;
+  overflow-x: hidden;
 
-  padding: 0 5px 5px 0;
+  padding: 2px 6px 8px 2px;
+
+  /* Prevent browser weirdness */
+  position: relative;
 }
 
 
-/* ---------------------------------------------------------
-   CHAT MESSAGE
---------------------------------------------------------- */
+/* =========================================================
+   CHAT MESSAGE BASE
+========================================================= */
 
-.msg {
-  display: block;
+.match-log .msg {
+  position: static !important;
 
-  width: fit-content;
+  display: block !important;
 
-  max-width: 78%;
+  float: none !important;
 
-  min-width: 0;
+  transform: none !important;
 
-  height: auto;
+  clear: both !important;
 
-  min-height: 0;
+  flex: 0 0 auto !important;
 
-  margin: 0;
+  width: auto !important;
+
+  height: auto !important;
+
+  min-height: 0 !important;
+
+  max-height: none !important;
+
+  margin: 0 !important;
 
   padding: 14px 16px;
 
@@ -534,18 +496,24 @@ section.block {
 
   white-space: normal;
 
+  overflow: visible;
+
   overflow-wrap: anywhere;
 
   word-break: normal;
+
+  box-sizing: border-box;
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    BOT MESSAGE
---------------------------------------------------------- */
+========================================================= */
 
-.msg.bot {
-  align-self: flex-start;
+.match-log .msg.bot {
+  align-self: flex-start !important;
+
+  width: min(82%, 720px) !important;
 
   background: var(--bone-dim);
 
@@ -553,12 +521,14 @@ section.block {
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    USER MESSAGE
---------------------------------------------------------- */
+========================================================= */
 
-.msg.user {
-  align-self: flex-end;
+.match-log .msg.user {
+  align-self: flex-end !important;
+
+  width: min(82%, 720px) !important;
 
   background: var(--pine);
 
@@ -566,119 +536,118 @@ section.block {
 }
 
 
-/* ---------------------------------------------------------
+/* =========================================================
    MESSAGE LABEL
---------------------------------------------------------- */
+========================================================= */
 
-.msg .label {
+.match-log .label {
   display: block;
 
-  margin: 0 0 8px 0;
-
-  padding: 0;
+  margin-bottom: 7px;
 
   font-size: 10px;
-
   line-height: 1.2;
-
-  letter-spacing: 0.08em;
-
-  text-transform: uppercase;
 
   font-weight: 700;
 
-  opacity: 0.55;
-}
+  letter-spacing: .08em;
+  text-transform: uppercase;
 
-
-/* ---------------------------------------------------------
-   MESSAGE TEXT
---------------------------------------------------------- */
-
-.msg-text {
-  display: block;
-
-  margin: 0;
-
-  padding: 0;
-
-  line-height: 1.55;
-}
-
-
-/* ---------------------------------------------------------
-   FIRST MESSAGE
---------------------------------------------------------- */
-
-.initial-msg {
-  width: fit-content;
-
-  max-width: 78%;
-
-  height: auto;
-
-  min-height: 0;
-
-  padding: 14px 16px;
+  opacity: .55;
 }
 
 
 /* =========================================================
-   CHAT INPUT
+   MESSAGE TEXT
+
+   IMPORTANT:
+   Allows normal wrapping and new lines.
+========================================================= */
+
+.match-log .msg-text {
+  display: block;
+
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  line-height: 1.55;
+
+  white-space: pre-wrap;
+
+  overflow-wrap: anywhere;
+
+  word-break: normal;
+}
+
+
+/* =========================================================
+   INITIAL MESSAGE
+========================================================= */
+
+.match-log .initial-msg {
+  width: min(82%, 720px) !important;
+
+  align-self: flex-start !important;
+}
+
+
+/* =========================================================
+   INPUT
 ========================================================= */
 
 .input-row {
-  display: flex;
+  width: 100%;
 
+  display: flex;
   align-items: stretch;
 
   gap: 10px;
-
-  width: 100%;
 }
 
-textarea#skillsInput {
-  flex: 1;
+#skillsInput {
+  flex: 1 1 auto;
 
   width: 100%;
 
-  min-height: 54px;
+  min-width: 0;
 
-  max-height: 160px;
+  min-height: 76px;
 
-  resize: vertical;
-
-  border: 1px solid var(--line);
-
-  border-radius: 2px;
+  max-height: 180px;
 
   padding: 13px 14px;
 
-  font-family: var(--font);
+  resize: vertical;
 
-  font-size: 14px;
-
-  line-height: 1.5;
-
+  background: #fff;
   color: var(--ink);
 
-  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+
+  outline: none;
+
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-textarea#skillsInput:focus {
-  outline: 2px solid var(--amber);
+#skillsInput:focus {
+  border-color: var(--amber);
 
-  outline-offset: 1px;
+  box-shadow: 0 0 0 2px rgba(193, 137, 47, .15);
 }
 
-textarea#skillsInput::placeholder {
+#skillsInput::placeholder {
   color: #777;
 }
 
-.input-row .btn {
-  min-width: 100px;
+.scan-button {
+  flex: 0 0 110px;
 
-  align-self: stretch;
+  min-height: 76px;
 }
 
 
@@ -687,11 +656,11 @@ textarea#skillsInput::placeholder {
 ========================================================= */
 
 .hint {
+  margin-top: 10px;
+
   font-size: 12.5px;
 
-  opacity: 0.55;
-
-  margin-top: 10px;
+  opacity: .55;
 }
 
 
@@ -708,13 +677,9 @@ textarea#skillsInput::placeholder {
 }
 
 .match-log::-webkit-scrollbar-thumb {
-  background: rgba(21, 43, 35, 0.35);
+  background: rgba(21, 43, 35, .3);
 
   border-radius: 10px;
-}
-
-.match-log::-webkit-scrollbar-thumb:hover {
-  background: rgba(21, 43, 35, 0.55);
 }
 
 
@@ -724,22 +689,21 @@ textarea#skillsInput::placeholder {
 
 footer {
   padding-top: 40px;
-
   padding-bottom: 60px;
 }
 
-footer .wrap {
+.footer-inner {
   display: flex;
 
   justify-content: space-between;
 
-  flex-wrap: wrap;
-
   gap: 16px;
+
+  flex-wrap: wrap;
 
   font-size: 13px;
 
-  opacity: 0.6;
+  opacity: .6;
 }
 
 
@@ -751,7 +715,6 @@ footer .wrap {
 
   .wrap {
     padding-left: 24px;
-
     padding-right: 24px;
   }
 
@@ -774,46 +737,39 @@ footer .wrap {
 
   .wrap {
     padding-left: 20px;
-
     padding-right: 20px;
   }
 
-
-  /* Header */
 
   .header-inner {
     flex-direction: column;
 
     align-items: flex-start;
 
-    gap: 18px;
-
     padding-top: 18px;
-
     padding-bottom: 18px;
+
+    gap: 15px;
   }
 
   nav ul {
     gap: 18px;
 
-    font-size: 13px;
-
     flex-wrap: wrap;
+
+    font-size: 13px;
   }
 
 
-  /* Hero */
-
   .hero {
     padding-top: 56px;
-
     padding-bottom: 50px;
   }
 
   .hero h1 {
-    font-size: 34px;
-
     max-width: none;
+
+    font-size: 34px;
   }
 
   .hero p {
@@ -821,11 +777,8 @@ footer .wrap {
   }
 
 
-  /* Sections */
-
   section.block {
     padding-top: 55px;
-
     padding-bottom: 55px;
   }
 
@@ -838,8 +791,6 @@ footer .wrap {
   }
 
 
-  /* Role cards */
-
   .role-head {
     padding: 20px;
   }
@@ -851,9 +802,9 @@ footer .wrap {
   .role-body {
     grid-template-columns: 1fr;
 
-    padding: 22px;
-
     gap: 24px;
+
+    padding: 22px;
   }
 
   .role-foot {
@@ -861,7 +812,7 @@ footer .wrap {
   }
 
 
-  /* AI panel */
+  /* CHAT */
 
   .match-head {
     padding: 20px;
@@ -871,52 +822,40 @@ footer .wrap {
     padding: 20px;
   }
 
-
-  /* Chat */
-
   .match-log {
-    max-height: 400px;
-
-    gap: 12px;
+    max-height: 420px;
   }
 
-  .msg {
-    max-width: 90%;
+  .match-log .msg,
+  .match-log .initial-msg,
+  .match-log .msg.bot,
+  .match-log .msg.user {
+    width: 92% !important;
 
-    font-size: 14px;
-
-    padding: 13px 14px;
-  }
-
-  .initial-msg {
-    max-width: 90%;
+    max-width: 92% !important;
   }
 
 
-  /* Input */
+  /* INPUT */
 
   .input-row {
     flex-direction: column;
-
-    gap: 10px;
   }
 
-  textarea#skillsInput {
-    min-height: 80px;
-
-    width: 100%;
+  #skillsInput {
+    min-height: 90px;
   }
 
-  .input-row .btn {
+  .scan-button {
     width: 100%;
 
-    min-height: 48px;
+    flex-basis: auto;
+
+    min-height: 50px;
   }
 
 
-  /* Footer */
-
-  footer .wrap {
+  .footer-inner {
     flex-direction: column;
   }
 
@@ -937,37 +876,20 @@ footer .wrap {
     font-size: 30px;
   }
 
-  .hero p {
-    font-size: 14px;
-  }
-
-  .role-head .meta {
-    width: 100%;
-  }
-
   .role-body {
     padding: 18px;
-  }
-
-  .role-foot {
-    font-size: 12.5px;
-  }
-
-  .match-head h3 {
-    font-size: 18px;
-  }
-
-  .match-head p {
-    font-size: 13.5px;
   }
 
   .match-body {
     padding: 16px;
   }
 
-  .msg,
-  .initial-msg {
-    max-width: 94%;
+  .match-log .msg,
+  .match-log .initial-msg,
+  .match-log .msg.bot,
+  .match-log .msg.user {
+    width: 96% !important;
+    max-width: 96% !important;
   }
 
 }

@@ -1,14 +1,18 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
   const log = document.getElementById("matchLog");
   const input = document.getElementById("skillsInput");
   const btn = document.getElementById("sendBtn");
 
-  // Check that HTML elements exist
   if (!log || !input || !btn) {
     console.error("Compatibility Scan elements not found.");
     return;
   }
+
+
+  // ==========================================================
+  // RUN COMPATIBILITY SCAN
+  // ==========================================================
 
   async function runMatch() {
 
@@ -19,19 +23,19 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // -----------------------------
+
+    // --------------------------------------------------------
     // USER MESSAGE
-    // -----------------------------
+    // --------------------------------------------------------
 
     const userMsg = document.createElement("div");
 
     userMsg.className = "msg user";
 
-    userMsg.innerHTML =
-      '<span class="label">You</span>' +
-      '<div class="msg-text">' +
-      escapeHtml(text) +
-      "</div>";
+    userMsg.innerHTML = `
+      <span class="label">You</span>
+      <div class="msg-text">${escapeHtml(text)}</div>
+    `;
 
     log.appendChild(userMsg);
 
@@ -40,21 +44,27 @@ document.addEventListener("DOMContentLoaded", () => {
     scrollChat();
 
 
-    // -----------------------------
+    // --------------------------------------------------------
     // LOADING MESSAGE
-    // -----------------------------
+    // --------------------------------------------------------
 
     const loading = document.createElement("div");
 
     loading.className = "msg bot";
 
-    loading.innerHTML =
-      '<span class="label">Scan</span>' +
-      '<div class="msg-text">Reading your profile against the current roles…</div>';
+    loading.innerHTML = `
+      <span class="label">Scan</span>
+      <div class="msg-text">
+        Reading your profile against the current roles…
+      </div>
+    `;
 
     log.appendChild(loading);
 
     scrollChat();
+
+
+    // Disable button while request is running
 
     btn.disabled = true;
     btn.textContent = "Scanning…";
@@ -62,12 +72,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
 
-      console.log("Sending request to /api/match");
+      console.log("Sending compatibility request...");
 
 
-      // -----------------------------
-      // CALL BACKEND
-      // -----------------------------
+      // ======================================================
+      // DO NOT CHANGE THIS BACKEND ENDPOINT
+      // ======================================================
 
       const response = await fetch("/api/match", {
 
@@ -87,37 +97,39 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("API status:", response.status);
 
 
-      // -----------------------------
+      // ------------------------------------------------------
       // HANDLE HTTP ERROR
-      // -----------------------------
+      // ------------------------------------------------------
 
       if (!response.ok) {
 
-        let errorText = `Server returned ${response.status}`;
+        let errorMessage = `Server returned ${response.status}`;
 
         try {
 
           const errorData = await response.json();
 
           if (errorData.detail) {
-            errorText = errorData.detail;
+            errorMessage = errorData.detail;
           }
 
           if (errorData.reply) {
-            errorText = errorData.reply;
+            errorMessage = errorData.reply;
           }
 
-        } catch (e) {
-          console.log("Could not parse error response.");
+        } catch (error) {
+
+          console.log("Could not parse API error.");
+
         }
 
-        throw new Error(errorText);
+        throw new Error(errorMessage);
       }
 
 
-      // -----------------------------
-      // READ RESPONSE
-      // -----------------------------
+      // ------------------------------------------------------
+      // READ BACKEND RESPONSE
+      // ------------------------------------------------------
 
       const data = await response.json();
 
@@ -125,36 +137,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
       const reply =
-        data.reply ||
-        "The AI did not return a response.";
+        typeof data.reply === "string"
+          ? data.reply
+          : "The AI did not return a response.";
 
 
-      // -----------------------------
+      // ------------------------------------------------------
       // DISPLAY AI RESPONSE
-      // -----------------------------
+      // ------------------------------------------------------
 
-      loading.innerHTML =
-        '<span class="label">Scan</span>' +
-        '<div class="msg-text">' +
-        escapeHtml(reply).replace(/\n/g, "<br>") +
-        "</div>";
+      loading.innerHTML = `
+        <span class="label">Scan</span>
+        <div class="msg-text">${escapeHtml(reply)}</div>
+      `;
 
       scrollChat();
 
 
     } catch (error) {
 
-      console.error("Compatibility Scan Error:", error);
+      console.error(
+        "Compatibility Scan Error:",
+        error
+      );
 
 
-      loading.innerHTML =
-        '<span class="label">Scan</span>' +
-        '<div class="msg-text">' +
-        "Something went wrong: " +
-        escapeHtml(error.message) +
-        "</div>";
+      loading.innerHTML = `
+        <span class="label">Scan</span>
+        <div class="msg-text">
+          Something went wrong reaching the server.
+          Please try again in a moment.
+        </div>
+      `;
 
       scrollChat();
+
 
     } finally {
 
@@ -166,9 +183,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  // -----------------------------
+  // ==========================================================
   // ESCAPE HTML
-  // -----------------------------
+  // ==========================================================
 
   function escapeHtml(value) {
 
@@ -187,36 +204,43 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  // -----------------------------
-  // SCROLL CHAT
-  // -----------------------------
+  // ==========================================================
+  // SCROLL TO BOTTOM
+  // ==========================================================
 
   function scrollChat() {
 
-    setTimeout(() => {
+    requestAnimationFrame(() => {
 
       log.scrollTop = log.scrollHeight;
 
-    }, 50);
+    });
 
   }
 
 
-  // -----------------------------
-  // BUTTON CLICK
-  // -----------------------------
+  // ==========================================================
+  // BUTTON
+  // ==========================================================
 
-  btn.addEventListener("click", runMatch);
+  btn.addEventListener("click", function () {
+
+    runMatch();
+
+  });
 
 
-  // -----------------------------
+  // ==========================================================
   // ENTER = SEND
   // SHIFT + ENTER = NEW LINE
-  // -----------------------------
+  // ==========================================================
 
-  input.addEventListener("keydown", (event) => {
+  input.addEventListener("keydown", function (event) {
 
-    if (event.key === "Enter" && !event.shiftKey) {
+    if (
+      event.key === "Enter" &&
+      !event.shiftKey
+    ) {
 
       event.preventDefault();
 
@@ -227,6 +251,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  console.log("Compatibility Scan initialized successfully.");
+  console.log(
+    "Volo Compatibility Scan initialized."
+  );
 
 });
