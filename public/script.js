@@ -44,8 +44,8 @@ async function runMatch() {
   loading.className = "msg bot";
 
   loading.innerHTML =
-    '<span class="label">Scan</span>' +
-    "Reading against current roles…";
+  '<span class="label">Scan</span>' +
+  '<div class="msg-text">Reading your profile against the current roles…</div>';
 
   log.appendChild(loading);
 
@@ -118,8 +118,8 @@ async function runMatch() {
     // --------------------------------------------------------
 
     loading.innerHTML =
-      '<span class="label">Scan</span>' +
-      escapeHtml(reply).replace(/\n/g, "<br>");
+    '<span class="label">Scan</span>' +
+    "Reading against current roles…";
 
 
   } catch (err) {
