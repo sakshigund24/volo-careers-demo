@@ -379,8 +379,5 @@ mid-sentence.
 
 
         return {
-            "reply": (
-                "Something went wrong while running the "
-                "compatibility scan. Please try again shortly."
-            )
+            "reply": f"Gemini error: {type(e).__name__}: {str(e)}"
         }
